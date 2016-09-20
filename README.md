@@ -1,3 +1,21 @@
+# JASON CHANGE - ngc and rollup!
+
+Need to run three things.  First, keep lite-server running and serving up 
+`index.html` and the contents of the `dist` folder:
+
+    npm run lite
+
+Now we run the angular AOT compiler (8.5s).  This compiles the typescript
+into javascript from `app` to `compiled/app`, and it compiles the templates
+to `compiled/aot`.  These directories are specified in `ts-config-aot.json`:
+
+    $(npm bin)/ngc -p tsconfig-aot.json
+
+Now we run rollup to tree-shake, minify, and bundle (add `--watch` to have it
+watch for changes and rebundle) (7.8s):
+
+    $(npm bin)/rollup -c rollup.js
+
 # Angular QuickStart Source
 [![Build Status][travis-badge]][travis-badge-url]
 
